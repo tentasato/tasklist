@@ -1,0 +1,23 @@
+<% if logged_in? %>
+  <%# ログインしているとき %>
+  <p>ログイン完了ユーザ: 
+    <%= current_user.name %>
+  </p>
+  <table>
+    <tr><th>ID</th><th>Content</th></tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.id, task_path(task) %></td>
+        <td><%= task.content %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <%# ログインしていないとき %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Microposts</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
